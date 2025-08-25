@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}Acerca de FluXpro{% endblock %}
+
+{% block content %}
+<div class="container py-5 home-container">
+    <div class="row justify-content-center align-items-center w-100">
+        <div class="col-lg-10 text-center">
+
+            <!-- Logos corporativos -->
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 col-12 mb-3 mb-lg-0">
+                    <img src="{% static 'images/Logo CDT H.svg' %}" 
+                         alt="CDT de Gas - Logo Horizontal"
+                         class="img-fluid">
+                </div>
+                <div class="col-lg-6 col-12">
+                    <img src="{% static 'images/Logo FluXpro.jpg' %}" 
+                         alt="Logo FluXpro"
+                         class="img-fluid rounded shadow-sm">
+                </div>
+            </div>
+
+            <h1 class="home-title">Acerca de FluXpro</h1>
+            <h3 class="home-subtitle">CDT de Gas</h3>
+            
+            <p class="lead home-text mb-5">
+                FluXpro es un conjunto de herramientas desarrolladas por el 
+                CDT de Gas para apoyar el análisis y la simulación 
+                de propiedades y cálculos relacionados con el gas natural.  
+                Estas aplicaciones están diseñadas para ofrecer resultados confiables y 
+                comprensibles tanto para especialistas como para público en general.
+            </p>
+
+            <!-- Herramientas -->
+            <div class="text-start mt-4">
+                <h4 class="home-title mb-4">Herramientas disponibles</h4>
+
+                <div class="mb-5">
+                    <h5 class="box-title d-inline-flex home-subtitle  align-items-center">
+                        <i class="bi bi-droplet-half me-2"></i> Propiedades del Gas
+                    </h5>
+                    <p class="lead home-text mt-2">
+                        Permite calcular parámetros fundamentales del gas natural a partir 
+                        de su composición y condiciones de operación.  
+                        Entre los resultados se incluyen: factores de compresibilidad, 
+                        densidad absoluta, poder calorífico, viscosidad, densidad relativa, 
+                        índice de Wobbe, masa molar y densidad molar.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h5 class="box-title d-inline-flex home-subtitle  align-items-center">
+                        <i class="bi bi-soundwave me-2"></i> Velocidad del Sonido
+                    </h5>
+                    <p class="lead home-text mt-2">
+                        Estima la velocidad de propagación del sonido en el gas bajo 
+                        condiciones específicas de presión, temperatura y composición.  
+                        Esta herramienta también muestra la desviación frente a los valores de referencia.
+                    </p>
+                </div>
+
+                <div class="mb-5">
+                    <h5 class="box-title d-inline-flex home-subtitle  align-items-center">
+                        <i class="bi bi-graph-up-arrow me-2"></i> Cálculo de Caudal para Medidor Lineal
+                    </h5>
+                    <p class="lead home-text mt-2">
+                        Realiza la conversión de los volúmenes medidos en operación a condiciones base, 
+                        facilitando el cálculo del caudal real.  
+                        Incluye además factores de compresibilidad y desviaciones asociadas.
+                    </p>
+                </div>
+            </div>
+
+            <footer class="home-footer mt-5">
+                FluXpro Web v1.0 - 2025. Corporación CDT de GAS 
+                (<a href="https://www.cdtdegas.com" target="_blank">www.cdtdegas.com</a>)
+            </footer>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '_AppInfo/styles.css' %}">
+    <!-- Bootstrap Icons (si aún no están incluidos en base.html) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

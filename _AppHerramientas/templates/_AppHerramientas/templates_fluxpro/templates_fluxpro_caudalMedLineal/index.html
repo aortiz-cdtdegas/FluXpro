@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %} 
+{% block title %}FluXpro - Caudal{% endblock %}
+{% block content %}
+<div class="container">
+    <!-- Cabecero Principal -->
+    <header class="row align-items-center">
+        <div class="col-lg-6 col-sm-12 d-flex align-items-center justify-content-center justify-content-lg-start flex-column flex-lg-row text-center text-lg-start">
+            <img style="height: 70px;" src="{% static 'images/Logo FluXpro.jpg' %}" alt="Logo FluXpro">
+        </div>
+        <div class="col-lg-6 col-sm-12 d-flex align-items-center justify-content-center justify-content-lg-end text-center text-lg-end mt-2 mt-lg-0 section-title">
+            Cálculo de Caudal - Medidor lineal
+        </div>
+    </header>
+    <form id="condicionesForm">
+        <div class="row">
+            <!-- Columna Composición -->
+            <div class="col-sm-12 col-lg-3">
+                <div class="card shadow rounded-4 p-2 mb-4">
+                    <div class="box-title">Composición (Fracción Molar) [%]:</div>
+                    <section class="sectComposición">
+                        <div class="row justify-content-center table-container">
+                            <table class="table table-sm table-striped table-hover mb-0">
+                                {% for gas in gases %}
+                                <tr>
+                                    <td>{{ gas.label }}</td>
+                                    <td>
+                                        <input type="number" 
+                                        class="form-control gas-input" 
+                                        name="{{ gas.name }}" 
+                                        id="{{ gas.id }}"
+                                        placeholder="{{ gas.elemento_quimico }}">
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- Columna Condiciones y Resultados -->
+            <div class="col-sm-12 col-lg-9">
+                <!-- Condiciones -->
+                <section>
+                    <div class="container">
+                        <div class="row d-flex justify-content-center align-items-start">
+                            <!-- Operación -->
+                            <div class="col-lg-6 col-sm-12 px-0 px-lg-3">
+                                <div class="card shadow rounded-4 p-3 mb-3">
+                                    <div class="box-title">Operación:</div>
+                                    <span class="form-label mt-3">Temperatura [T<sub>F</sub>]:</span>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input type="number" 
+                                        class="form-control" 
+                                        name="temperature" 
+                                        id="temperature" 
+                                        placeholder="Ingrese la temperatura">
+                                        <span class="input-group-text">°F</span>
+                                    </div>
+                                    <span class="form-label">Presión [P<sub>F</sub>]:</span>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input type="number" 
+                                        class="form-control" 
+                                        name="pressure" 
+                                        id="pressure" 
+                                        placeholder="Ingrese la presión">
+                                        <span class="input-group-text">psia</span>
+                                    </div>
+                                    <span class="form-label">Volumen Medido:</span>
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" 
+                                        class="form-control" 
+                                        name="volMedido" 
+                                        id="volMedido" 
+                                        placeholder="Ingrese el volumen medido">
+                                        <span class="input-group-text">KPCD</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Base -->
+                             <div class="col-lg-6 col-sm-12 px-0 px-lg-3">
+                                <div class="card shadow rounded-4 p-3">
+                                    <div class="box-title">Base:</div>
+                                    <span class="form-label mt-3">Temperatura [T<sub>B</sub>]:</span>
+                                    <div class="input-group input-group-sm mb-3">
+                                        <input type="number" 
+                                        class="form-control" 
+                                        name="tempBs" 
+                                        id="tempBs" 
+                                        placeholder="Ingrese la temperatura">
+                                        <span class="input-group-text">°F</span>
+                                    </div>
+                                    <span class="form-label">Presión [P<sub>B</sub>]:</span>
+                                    <div class="input-group input-group-sm">
+                                        <input type="number" 
+                                        class="form-control" 
+                                        name="presBs" 
+                                        id="presBs" 
+                                        placeholder="Ingrese la presión">
+                                        <span class="input-group-text">psia</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Resultados -->
+                 <section>
+                    <div class="container">
+                        <div class="row text-center">
+                            <div class="card shadow rounded-4 p-3">
+                                <div class="col-12 mb-2 box-titleResultados">Resultados</div>
+                                <div class="col">
+                                    <div class="row">
+                                        <!-- Col 1 -->
+                                         <div class="col-lg-6 col-sm-12">
+                                                <!-- Volumen Base -->
+                                                 <div class="input-group input-group-sm flex-column flex-sm-row align-items-start">
+                                                    <span class="form-check-label text-dark mb-1 mb-sm-0 me-sm-2 w-100 w-sm-50 text-start" 
+                                                    title="Volumen Base">Volumen Base (V<sub>B</sub>):</span>
+                                                    <div class="d-flex w-100 w-sm-auto">
+                                                        <input type="text" 
+                                                        class="form-control me-0" 
+                                                        id="vb" 
+                                                        readonly>
+                                                        <span class="input-group-text">KPCD</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Zf -->
+                                                 <div class="input-group input-group-sm mt-3 flex-column flex-sm-row align-items-start">
+                                                    <span class="form-check-label text-dark mb-1 mb-sm-0 me-sm-2 w-100 w-sm-50 text-start" 
+                                                    title="Factor de Compresibilidad a Condiciones de Flujo">Factor de Compresibilidad a Condiciones de Flujo (Z<sub>F</sub>):</span>
+                                                    <div class="d-flex w-100 w-sm-auto">
+                                                        <input type="text" 
+                                                        class="form-control w-100 w-sm-auto" 
+                                                        id="zf" 
+                                                        readonly>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <!-- Col 2 -->
+                                         <div class="col-lg-6 col-sm-12">
+                                                <!-- Desviación -->
+                                                 <div class="input-group input-group-sm flex-column flex-sm-row align-items-start">
+                                                    <span class="form-check-label text-dark mb-1 mb-sm-0 me-sm-2 w-100 w-sm-50 text-start" 
+                                                    title="Desviación">Desviación</span>
+                                                    <div class="d-flex w-100 w-sm-auto">
+                                                        <input type="text" 
+                                                        class="form-control me-0" 
+                                                        id="desv" 
+                                                        readonly>
+                                                        <span class="input-group-text">%</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Zb -->
+                                                 <div class="input-group input-group-sm mt-3 flex-column flex-sm-row align-items-start">
+                                                    <span class="form-check-label text-dark mb-1 mb-sm-0 me-sm-2 w-100 w-sm-50 text-start" 
+                                                    title="Factor de Compresibilidad a Condiciones Base">Factor de Compresibilidad a Condiciones Base (Z<sub>B</sub>):</span>
+                                                    <div class="d-flex w-100 w-sm-auto">
+                                                        <input type="text" 
+                                                        class="form-control w-100 w-sm-auto" 
+                                                        id="zb" 
+                                                        readonly>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    <!-- Botones -->
+                                    <div class="sectBotones d-flex justify-content-center gap-4 mt-4 mb-3">
+                                        <button type="submit" class="btn btn-success buttonWeight2 btn-lg">Calcular</button>
+                                        <button type="button" id="resetInputs" class="btn btn-secondary buttonWeight btn-lg">Reiniciar</button>
+                                    </div>
+                                    <!-- Footer -->
+                                    <footer class="sectFooter text-center">
+                                        <img src="/static/images/Logo CDT H.svg" alt="CDT de Gas" class="img-fluid" style="max-height: 60px;">
+                                        <h6>
+                                            FluXpro Web v1.0 - 2025. Corporación CDT de GAS 
+                                            (<a href="https://www.cdtdegas.com" target="_blank">www.cdtdegas.com</a>)</h6>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static '_AppHerramientas/static_fluxpro/static_fluxpro_caudalMedLineal/styles.css' %}">
+{% endblock %}
+{% block extra_js %}
+<script>
+    window.apiUrl = "{% url 'FluxCalcPropCaudLineal' %}";
+    window.csrfToken = "{{ csrf_token }}";
+</script>
+<script src="{% static '_AppHerramientas/static_fluxpro/static_fluxpro_caudalMedLineal/js/api.js' %}"></script>
+<script src="{% static '_AppHerramientas/static_fluxpro/static_fluxpro_caudalMedLineal/js/ui.js' %}"></script>
+<script src="{% static '_AppHerramientas/static_fluxpro/static_fluxpro_caudalMedLineal/js/events.js' %}"></script>
+<script src="{% static '_AppHerramientas/static_fluxpro/static_fluxpro_caudalMedLineal/js/main.js' %}"></script>
+{% endblock %}

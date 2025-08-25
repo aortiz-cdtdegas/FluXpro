@@ -1,0 +1,8 @@
+{
+    "window.autoDetectColorScheme": true,
+    "editor.hideCursorInOverviewRuler": false,
+    "editor.indentSize": "tabSize",
+    "editor.inertialScroll": false,
+    "editor.scrollBeyondLastLine": false,
+    "editor.scrollBeyondLastColumn": 5
+}

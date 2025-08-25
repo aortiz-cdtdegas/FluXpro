@@ -1,0 +1,112 @@
+/* ==============================
+   Estilos revisados con variables
+   ============================== */
+
+.section-title {
+    color: var(--color-secundario-3); /* Texto sobrio */
+    font-size: 30px;
+    font-family: var(--fuente-principal);
+}
+
+header { 
+    background-color: #ffffff;
+    border-bottom: 3px solid var(--color-primario-1); /* Línea corporativa */
+    margin-bottom: 10px;
+}
+
+.sectComposición {
+    background-color: var(--color-fondo);
+    margin-bottom: 5px;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.sectFooter {
+    padding-top: 5px;
+    border-top: 1px solid var(--color-secundario-3);
+    font-family: var(--fuente-secundaria);
+    color: var(--color-secundario-5);
+}
+
+.buttonWeight {
+    width: 120px;
+    height: 50px;
+    font-family: var(--fuente-secundaria);
+    font-weight: 600;
+    background-color: var(--color-primario-1);
+    color: var(--color-texto);
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.buttonWeight:hover {
+    background-color: var(--color-secundario-1);
+}
+
+.buttonWeight2 {
+    width: 120px;
+    height: 50px;
+    font-family: var(--fuente-secundaria);
+    font-weight: 600;
+    background-color: var(--color-primario-2);
+    color: var(--color-texto);
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.buttonWeight2:hover {
+    background-color: var(--color-secundario-2);
+}
+
+.gas-input {
+    width: 100px;
+    border: 1px solid var(--color-secundario-3);
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-family: var(--fuente-secundaria);
+}
+
+.gas-input::placeholder {
+    color: rgba(0, 0, 0, 0.3); /* Cambia el color y la opacidad aquí */
+}
+
+.box-title {
+    background-color: var(--color-secundario-4);
+    color: var(--color-texto);
+    font-size: 20px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: var(--fuente-principal);
+    letter-spacing: 1px;
+}
+
+.box-titleResultados {
+    background-color: var(--color-secundario-5);
+    color: var(--color-texto);
+    font-size: 20px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    font-family: var(--fuente-principal);
+    letter-spacing: 1px;
+    justify-content: center
+}
+
+
+.form-control {
+    border: 1px solid var(--color-secundario-3);
+    border-radius: 6px;
+    font-family: var(--fuente-secundaria);
+}
+.form-control:focus {
+    border-color: var(--color-primario-2);
+    outline: none;
+    box-shadow: 0 0 4px rgba(65, 196, 170, 0.4);
+}
+input.form-control::placeholder {
+    color: rgba(0, 0, 0, 0.3); /* Ajusta la opacidad como prefieras */
+}

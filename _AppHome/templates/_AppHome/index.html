@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %} 
+
+{% block title %}CDT de Gas - FluXpro{% endblock %}
+
+{% block content %}
+<div class="container py-5 home-container">
+    <div class="row justify-content-center align-items-center w-100">
+        <div class="col-lg-7 text-center">
+            <img src="{% static 'images/Logo CDT 25.svg' %}" 
+                 alt="Herramientas CDT de GAS" 
+                 class="img-fluid mb-4 home-logo">
+            
+            <h1 class="home-title">CDT de Gas - FluXpro</h1>
+            <h3 class="home-subtitle">Corporación para el Desarrollo Tecnológico del Gas</h3>
+            
+            <p class="lead home-text">
+                Bienvenido al Portal de Herramientas del CDT de Gas
+            </p>
+
+            <footer class="home-footer">
+                FluXpro Web v1.0 - 2025. Corporación CDT de GAS 
+                (<a href="https://www.cdtdegas.com" target="_blank">www.cdtdegas.com</a>)
+            </footer>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static '_AppHome/styles.css' %}">
+{% endblock %}
+
+{% block extra_js %}{% endblock %}

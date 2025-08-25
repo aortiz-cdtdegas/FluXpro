@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <title>{% block title %}CDT de Gas{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/Icono CDT.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Estilos Globales -->
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Barra Lateral -->
+    <nav class="sidebar">
+        <div class="sidebar-header d-flex justify-content-end align-items-center bg-white p-2">
+            <!-- Logo y Botón de Toggle -->
+                <img src="/static/images/Logo CDT H.svg" alt="CDT de Gas" class="img-fluid" style="max-height: 50px;">
+            <button id="toggleSidebar" class="btn btn-outline-secondary">
+                <i class="bi bi-list"></i>
+            </button>
+        </div>
+        <hr>
+
+    <a href="{% url 'index' %}" class="menu-title{% if active_section == 'home' %}active{% endif %}"><i class="bi bi-house-door me-2"></i>Home</a>
+
+        <!-- Herramientas: título y lista de herramientas con sangría mínima -->
+        <div class="menu-title"><i class="bi bi-tools me-1"></i>Herramientas FluXpro</div>
+        <div class="tool-list">
+            <a href="{% url 'fluxpro' %}" class="tool-link {% if active_section == 'fluxpro_propiedadesGas' %}active{% endif %}"><i class="bi bi-droplet-half me-2"></i>Propiedades del Gas</a>
+            <a href="{% url 'fluxproVel' %}" class="tool-link {% if active_section == 'fluxpro_velocidadSonido' %}active{% endif %}"><i class="bi bi-soundwave me-2"></i>Velocidad del Sonido</a>
+            <a href="{% url 'fluxproCaudLineal' %}" class="tool-link {% if active_section == 'fluxpro_caudalMedLineal' %}active{% endif %}"><i class="bi bi-graph-up-arrow me-2"></i>Cálculo de Caudal - Medidor Lineal</a>
+        </div>
+    <!-- Complementos y otras secciones inactivas han sido retiradas del menú para mostrar solo Home y Herramientas -->
+    <a href="{% url 'Info' %}" class="menu-title{% if active_section == 'Info' %}active{% endif %}"><i class="bi bi-info-circle-fill me-2"></i>Acerca de</a>
+
+    <!-- Botón de Logout eliminado para mostrar solo Home y Herramientas -->
+    </nav>
+
+    <!-- Contenido Dinámico -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Scripts Globales -->
+    <!-- Base API y Utilidades -->
+    <script type="module" src="{% static 'js/global/utils/ui.js' %}"></script>
+    <script type="module" src="{% static 'js/global/api/base.js' %}"></script>
+    <script type="module" src="{% static 'js/global/api/endpoints.js' %}"></script>
+    <script type="module" src="{% static 'js/events.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
+
